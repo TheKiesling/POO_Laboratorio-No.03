@@ -17,7 +17,7 @@ public class Vista {
     Nombre del programa: Vista.java
     @version: 
         - Creación: 29/10/2021
-        - Última modificación: 29/10/2021
+        - Última modificación: 30/10/2021
 
     Clase que tiene como fin ser un sistema I/O para la manipulación del programa
     */ 
@@ -91,6 +91,14 @@ public class Vista {
     //****************************************************************
 
     /*****************************************************************
+     * despedida: imprime un mensaje de despedida
+     */
+    public void despedida(){
+        System.out.println("\nOraleMano, espero vuelva pronto a realizar posts por mensajitos");
+    }
+    //****************************************************************
+
+    /*****************************************************************
      * menuOpcionesBusqueda: despliega el menú de búsqueda y recibe la opción del usuario
      * @return opcion
      * @throws Exception 
@@ -103,7 +111,7 @@ public class Vista {
         try{
             //Despliegue de menú de opciones de búsqueda  
             System.out.println("\n\nMano, ¿bajo que criterio desea hacer su busqueda?");
-            System.out.println("\n\n1. Fecha");
+            System.out.println("\n\n1. Fecha de publicacion");
             System.out.println("2. Hashtag\n\n");
 
             while (!bandera){ //Ciclo para evaluar si se ingresó una opcion válida
@@ -142,6 +150,80 @@ public class Vista {
             System.out.println("\n\n1. Reproducir");
             System.out.println("2. Dar like");
             System.out.println("3. Comentar\n\n");
+
+            while (!bandera){ //Ciclo para evaluar si se ingresó una opcion válida
+                opcion = Integer.parseInt(scan.nextLine());
+                System.out.println();
+                if (opcion > 0 && opcion <= 3) //Opciones válidas
+                    bandera = true;
+                else{ 
+                    System.out.println("ERROR: Ingrese una de las opciones indicadas anteriormente"); 
+                }
+            }
+        } catch (InputMismatchException e){ //Error de ingreso por input
+            String s = "Error de conversión con scan.nextInt() " + opcion + ": " + e.toString(); 
+            throw new InputMismatchException(s);
+        } catch (Exception e){ //Captura cualquier error que no sea de input
+            String s = "Ocurrió un error con scan.nextInt() " +  opcion + ": " + e.toString();
+            throw new Exception(s);
+        }
+        return opcion;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * menuOpcionesPost: despliega el menú de tipos de post y recibe la opción del usuario
+     * @return opcion
+     * @throws Exception 
+     * @throws InputMismatchException
+     */
+    public int menuOpcionesPost() throws Exception, InputMismatchException{
+        int opcion = -1;
+        boolean bandera = false;
+
+        try{
+            //Despliegue de menú de opciones  
+            System.out.println("\n\nMano, ¿que tipo de post desea publicar?");
+            System.out.println("\n\n1. Texto");
+            System.out.println("2. Multimedia");
+            System.out.println("3. Emoticon\n\n");
+
+            while (!bandera){ //Ciclo para evaluar si se ingresó una opcion válida
+                opcion = Integer.parseInt(scan.nextLine());
+                System.out.println();
+                if (opcion > 0 && opcion <= 3) //Opciones válidas
+                    bandera = true;
+                else{ 
+                    System.out.println("ERROR: Ingrese una de las opciones indicadas anteriormente"); 
+                }
+            }
+        } catch (InputMismatchException e){ //Error de ingreso por input
+            String s = "Error de conversión con scan.nextInt() " + opcion + ": " + e.toString(); 
+            throw new InputMismatchException(s);
+        } catch (Exception e){ //Captura cualquier error que no sea de input
+            String s = "Ocurrió un error con scan.nextInt() " +  opcion + ": " + e.toString();
+            throw new Exception(s);
+        }
+        return opcion;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * menuOpcionesMultimedia: despliega el menú de tipos de multimedia y recibe la opción del usuario
+     * @return opcion
+     * @throws Exception 
+     * @throws InputMismatchException
+     */
+    public int menuOpcionesMultimedia() throws Exception, InputMismatchException{
+        int opcion = -1;
+        boolean bandera = false;
+
+        try{
+            //Despliegue de menú de opciones  
+            System.out.println("\n\nMano, ¿que tipo de multimedia desea publicar?");
+            System.out.println("\n\n1. Audio");
+            System.out.println("2. Imagen");
+            System.out.println("3. Video\n\n");
 
             while (!bandera){ //Ciclo para evaluar si se ingresó una opcion válida
                 opcion = Integer.parseInt(scan.nextLine());
@@ -205,6 +287,46 @@ public class Vista {
     //****************************************************************
 
     /*****************************************************************
+     * pedirFechaBuscar: pide la fecha de publicación que quiere buscar del post
+     * @return fecha
+     * @throws Exception
+     */
+    public String pedirFechaBuscar() throws Exception{
+        String fecha = "";
+        
+        try{
+            System.out.println("Mano, ingrese la fecha de publicacion del post que quiere buscar (dd/mm/aaaa)");
+            fecha = scan.nextLine();
+            System.out.println(); 
+        } catch (Exception e){ //Captura cualquier error que no sea de input
+            String s = "Ocurrió un error con scan.nextLine() " +  fecha + ": " + e.toString();
+            throw new Exception(s);
+        }
+        return fecha;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * pedirHashtagBuscar: pide el hashtag que quiere buscar
+     * @return hashtag
+     * @throws Exception
+     */
+    public String pedirHashtagBuscar() throws Exception{
+        String hashtag = "";
+        
+        try{
+            System.out.println("Mano, ingrese la fecha de publicacion del post (dd/mm/aaaa)");
+            hashtag = scan.nextLine();
+            System.out.println(); 
+        } catch (Exception e){ //Captura cualquier error que no sea de input
+            String s = "Ocurrió un error con scan.nextLine() " +  hashtag + ": " + e.toString();
+            throw new Exception(s);
+        }
+        return hashtag;
+    }
+    //****************************************************************
+
+    /*****************************************************************
      * pedirHora: pide la hora de publicación del post
      * @return hora
      * @throws Exception
@@ -213,7 +335,7 @@ public class Vista {
         String hora = "";
         
         try{
-            System.out.println("Mano, ingrese la hora de publicacion del post (dd/mm/aaaa)");
+            System.out.println("Mano, ingrese la hora de publicacion del post (hh:mm)");
             hora = scan.nextLine();
             System.out.println(); 
         } catch (Exception e){ //Captura cualquier error que no sea de input
@@ -290,7 +412,7 @@ public class Vista {
      * @return texto
      * @throws Exception
      */
-    public String pedirHashtag() throws Exception{
+    public String pedirHashtags() throws Exception{
         String hashtag = "";
         boolean bandera = false;
 
