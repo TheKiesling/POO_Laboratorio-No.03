@@ -91,7 +91,12 @@ public class Controlador {
                     //Interactuar con los posts
                     int opcionInteractuar = vista.menuOpcionesInteraccion();
                     int postInteractuar = vista.pedirPost();
-                    boolean reaccion = red.interactuar(opcionInteractuar, postInteractuar);
+                    boolean reaccion = false
+                    if(opcionInteractuar == 3){
+                        String comentario = vista.pedirTexto();
+                        reaccion = red.interactuar(opcionInteractuar, postInteractuar, comentario);
+                    }
+                    reaccion = red.interactuar(opcionInteractuar, postInteractuar);
                     vista.reaccion(reaccion);
                 }
 
