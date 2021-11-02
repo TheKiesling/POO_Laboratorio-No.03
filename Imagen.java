@@ -39,13 +39,15 @@ public class Imagen extends Multimedia {
 
     public String toString() {
         String post = "";
-        post += this.usuario + "." + this.fecha + ":" + this.hora + "likes: " + this.likes + "\n";
+        post += this.usuario + "." + this.fecha + ":" + this.hora + " likes: " + this.likes + "\n";
         for (int i = 0; i < hashtags.length; i++)
-            post += "#" + hashtags[i];
+            if (hashtags[i] != "")
+                post += "#" + hashtags[i] + " ";
         post += "\n" + "(imagen) " + this.url + "\n";
-        post += this.tamano + " kB, " + this.formato + this.resolucion + " Megapixeles" + "\n";
+        post += this.tamano + " kB, " + this.formato + ", " + this.resolucion + " Megapixeles" + "\n";
+        post += "---> comentarios:" + "\n";
         for (int i = 0; i < comentarios.size(); i++)
-            post += "(" + i + 1 + ") " + comentarios.get(i) + "\n";
+            post += "(" + i + ") " + comentarios.get(i) + "\n";
         return post;
     }
 }

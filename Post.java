@@ -26,7 +26,7 @@ public abstract class Post {
     protected String fecha;
     protected String hora;
     protected int likes;
-    protected ArrayList<Comentario> comentarios = new ArrayList<Comentario>();
+    protected ArrayList<Comentario> comentarios;
     protected String[] hashtags;
     
     //---------------------------MÉTODOS-----------------------------
@@ -39,6 +39,9 @@ public abstract class Post {
         likes = 0;
         comentarios = null;
         this.hashtags = hashtags.split("#");
+        hashtags = recorrerArreglo(this.hashtags);
+        this.hashtags = hashtags.split(",");
+        comentarios = new ArrayList<Comentario>();
     }
 
     public String getFecha(){
@@ -48,6 +51,37 @@ public abstract class Post {
     public String[] getHashtags(){
         return this.hashtags;
     }
+
+    public String reproducir(){
+        return "no se puede reproducir este post";
+    }
+
+    public void like(){
+        this.likes++;
+    }
+
+    public void comentario(Comentario comentario){
+        comentarios.add(comentario);
+    }
+
+    /****************************************************************
+     * recorrerArreglo: recorre un arreglo en busca de elementos repetidos y los concatena solo una vez
+     * @param arreglo
+     * @return cadena
+     */
+    private String recorrerArreglo(String[] arreglo){
+        String cadena = "";
+        if (arreglo.length > 0){
+            cadena += arreglo[0]  + ","; 
+            for (int i = 1; i < arreglo.length; i++){
+                if (arreglo[i].equals(arreglo[i-1])){}
+                else 
+                    cadena += arreglo[i] + ",";
+            }
+        }
+        return cadena;
+    }
+    //***************************************************************
 
     public abstract String toString();
 }

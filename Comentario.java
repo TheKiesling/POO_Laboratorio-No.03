@@ -27,4 +27,8 @@ public class Comentario extends Texto{
     public Comentario(String usuario, String fecha, String hora, String hashtags, String texto) {
         super(usuario, fecha, hora, hashtags, texto);
     }
+
+    public String toString(){
+        return texto;
+    }
 }

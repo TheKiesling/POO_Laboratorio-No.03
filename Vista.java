@@ -315,7 +315,7 @@ public class Vista {
         String hashtag = "";
         
         try{
-            System.out.println("Mano, ingrese la fecha de publicacion del post (dd/mm/aaaa)");
+            System.out.println("Mano, ingrese el hashtag de las publicaciones que quiere buscar");
             hashtag = scan.nextLine();
             System.out.println(); 
         } catch (Exception e){ //Captura cualquier error que no sea de input
@@ -389,7 +389,7 @@ public class Vista {
             while (!bandera){ //Ciclo para evaluar si se ingresó un número de post correcto
                 post = Integer.parseInt(scan.nextLine());
                 System.out.println();
-                if (post > 0) //Verificar si el número es válido
+                if (post >= 0) //Verificar si el número es válido
                     bandera = true;
                 else 
                     System.out.println("ERROR: Ingrese un numero de post valido"); 
@@ -415,19 +415,15 @@ public class Vista {
     public String pedirHashtags() throws Exception{
         String hashtag = "";
         boolean bandera = false;
-
         try{
-            System.out.println("Mano, ingrese los hashtags que tendra su post (no tiene que poner #)");
             while (!bandera){ 
-                hashtag += "#" + scan.nextLine();
+                System.out.println("Mano, ingrese los hashtags que tendra su post (no tiene que poner #)");
+                hashtag += scan.nextLine() + "#";
                 System.out.println();
                 System.out.println("Mano, ¿desea ingresar otro hashtag? (Si/No)");
                 if (scan.nextLine().toLowerCase().equals("no")) 
                     bandera = true;
-                else if (scan.nextLine().toLowerCase().equals("no")) 
-                    bandera = false;
-                else
-                    System.out.println("ERROR: Extension invalida"); 
+                System.out.println();
             }
         } catch (Exception e){ //Captura cualquier error que no sea de input
             String s = "Ocurrió un error con scan.nextLine() " +  hashtag + ": " + e.toString();

@@ -31,12 +31,16 @@ public class Texto extends Post{
 
     public String toString(){
         String post = "";
-        post += this.usuario + "." + this.fecha + ":" + this.hora + "likes: " + this.likes + "\n";
-        for (int i = 0; i < hashtags.length; i++)
-            post += "#" + hashtags[i];
+        post += this.usuario + "." + this.fecha + ":" + this.hora + " likes: " + this.likes + "\n";
+        for (int i = 0; i < hashtags.length; i++){
+            System.out.println(i + hashtags[i]);
+            if (hashtags[i] != "")
+                post += "#" + hashtags[i] + " ";
+        }
         post +=  "\n" + "(texto) " + this.texto + "\n";
+        post += "---> comentarios:" + "\n";
         for (int i = 0; i < comentarios.size(); i++)
-            post += "(" + i + 1 + ") " + comentarios.get(i) + "\n";
+            post += "(" + i + ") " + comentarios.get(i) + "\n";
         return post;
     }
 }

@@ -91,13 +91,23 @@ public class Controlador {
                     //Interactuar con los posts
                     int opcionInteractuar = vista.menuOpcionesInteraccion();
                     int postInteractuar = vista.pedirPost();
-                    boolean reaccion = false
+                    if(opcionInteractuar == 1){
+                        String reproduccion = red.reproducir(postInteractuar);
+                        vista.busqueda(reproduccion);
+                    }
+                    if(opcionInteractuar == 2){
+                        Boolean like = red.like(postInteractuar);
+                        vista.reaccion(like);
+                        posts = red.busqueda(opcionBusqueda, busqueda);
+                        vista.busqueda(posts);
+                    }
                     if(opcionInteractuar == 3){
                         String comentario = vista.pedirTexto();
-                        reaccion = red.interactuar(opcionInteractuar, postInteractuar, comentario);
+                        Boolean comentar = red.comentar(postInteractuar, comentario);
+                        vista.reaccion(comentar);
+                        posts = red.busqueda(opcionBusqueda, busqueda);
+                        vista.busqueda(posts);
                     }
-                    reaccion = red.interactuar(opcionInteractuar, postInteractuar);
-                    vista.reaccion(reaccion);
                 }
 
                 if(opcion == 3){

@@ -42,11 +42,13 @@ public class Audio extends Multimedia{
         String post = "";
         post += this.usuario + "." + this.fecha + ":" + this.hora + "likes: " + this.likes + "\n";
         for (int i = 0; i < hashtags.length; i++)
-            post += "#" + hashtags[i];
+            if (hashtags[i] != "")
+                post += "#" + hashtags[i] + " ";
         post += "\n" + "(audio) " + this.url + "\n";
         post += this.tamano + " kB, " + "SampleRate: " + this.sampleRate + " kHz BitDepth: " + bitDelph + "\n";
+        post += "---> comentarios:" + "\n";
         for (int i = 0; i < comentarios.size(); i++)
-            post += "(" + i + 1 + ") " + comentarios.get(i) + "\n";
+            post += "(" + i + ") " + comentarios.get(i) + "\n";
         return post;
     }
 }
